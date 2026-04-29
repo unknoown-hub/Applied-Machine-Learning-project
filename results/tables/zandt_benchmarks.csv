@@ -1,0 +1,11 @@
+model,rmse,mae,mape,corr
+Random Walk,1.0,1.0,1.0,0.593
+AR(1),0.775,0.948,0.863,0.636
+Long Run Average,1.114,1.171,1.104,0.465
+Long Run Median,1.195,1.204,1.184,0.434
+Rolling Average (4 wks),0.946,0.98,0.958,0.606
+Rolling Average (8 wks),0.94,0.98,0.949,0.605
+Rolling Average (12 wks),0.931,0.976,0.943,0.607
+OLS 2FE DL (incl. zeros),1.527,1.359,1.935,0.39
+OLS 2FE DL (excl. zeros),0.97,1.113,0.9,0.456
+Bayesian DL-DLM (Z&T),0.737,0.907,0.804,0.639

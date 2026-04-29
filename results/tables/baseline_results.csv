@@ -1,0 +1,8 @@
+Model,RMSE,MAE,MAPE,Corr
+Random Walk,1.0,1.0,1.0,0.64
+AR(1),0.883,1.073,1.146,0.682
+Rolling Avg (4),0.853,0.937,1.001,0.709
+Rolling Avg (8),0.865,0.991,1.086,0.701
+Rolling Avg (12),0.889,1.041,1.158,0.683
+Long Run Mean,1.054,1.346,1.371,0.516
+Long Run Median,1.117,1.321,1.232,0.487
