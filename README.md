@@ -72,15 +72,9 @@ Applied-Machine-Learning-Summative/
    python src/data_prep.py
    python src/features.py
    ```
+  
 
-4. Run models and evaluation:
-   ```bash
-   python src/models_baselines.py
-   python src/models_gbm.py
-   python src/models_lstm.py
-   ```
-
-5. Alternatively, run the end-to-end pipeline via the notebooks in `notebooks/`.
+5. Run the end-to-end pipeline via the notebooks in `notebooks/`.
 
 ---
 
