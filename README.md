@@ -8,19 +8,30 @@ This project benchmarks multiple forecasting approaches against a Bayesian dynam
 
 **Key finding:** Gradient boosting with 5 lags achieves the best point-forecast performance (relative RMSE = 0.824, R² = 0.511), while the Hurdle model delivers the strongest probabilistic forecasting (relative CRPS = 0.920, 90% coverage = 0.903). However, all ML models remain within a narrow margin of simple autoregressive baselines, suggesting a low intrinsic predictability ceiling for short-term sub-national displacement forecasting.
 
+---
+
 ## Repository Structure
 
 ```
-├── data/                  # Raw and processed datasets (PRMN displacement + ACLED conflict)
-├── notebooks/             # Jupyter notebooks for EDA, modelling, and results
-├── results/tables/        # Output tables and evaluation metrics
-├── src/                   # Full model implementation and utilities
-│   ├── preprocessing/     # Data cleaning and feature engineering scripts
-│   ├── models/            # GBM, Hurdle, Quantile GBM, and LSTM implementations
-│   └── evaluation/       # Rolling-origin walk-forward evaluation framework
-├── requirements.txt       # Python dependencies
+Applied-Machine-Learning-Summative/
+├── data/                        # Raw and processed datasets (PRMN + ACLED)
+├── notebooks/                   # Jupyter notebooks for EDA, modelling, and results
+├── results/
+│   └── tables/                  # Output evaluation metrics and result tables
+├── src/                         # Full Python implementation
+│   ├── data_prep.py             # Data loading, cleaning, and panel construction
+│   ├── features.py              # Feature engineering and lag construction
+│   ├── models_baselines.py      # Naïve baselines: random walk, AR(1), rolling averages
+│   ├── models_gbm.py            # Gradient boosting models (point, quantile, hurdle)
+│   ├── models_lstm.py           # LSTM recurrent neural network implementation
+│   ├── metrics.py               # Evaluation metrics: RMSE, MAE, sMAPE, CRPS, coverage
+│   └── walkforward.py           # Rolling-origin walk-forward evaluation framework
+├── .gitignore
+├── requirements.txt             # Python dependencies
 └── README.md
 ```
+
+---
 
 ## Models Evaluated
 
@@ -34,10 +45,14 @@ This project benchmarks multiple forecasting approaches against a Bayesian dynam
 | Hurdle (5 lags) | 0.829 | 0.506 |
 | Z&T Bayesian DL-DLM | 0.737 | — |
 
+---
+
 ## Data Sources
 
-- **PRMN** — UNHCR Protection and Return Monitoring Network: weekly district-level displacement outflows across Somalia
+- **PRMN** — UNHCR Protection and Return Monitoring Network: weekly district-level displacement outflows across Somalia (2017–2023)
 - **ACLED** — Armed Conflict Location & Event Data Project: battles, explosions/remote violence, violence against civilians, and strategic developments
+
+---
 
 ## Reproducing the Results
 
@@ -52,7 +67,22 @@ This project benchmarks multiple forecasting approaches against a Bayesian dynam
    pip install -r requirements.txt
    ```
 
-3. Run the notebooks in order (see `notebooks/`) or execute the scripts in `src/` directly. Full preprocessing, modelling, and evaluation pipelines are included.
+3. Preprocess the data:
+   ```bash
+   python src/data_prep.py
+   python src/features.py
+   ```
+
+4. Run models and evaluation:
+   ```bash
+   python src/models_baselines.py
+   python src/models_gbm.py
+   python src/models_lstm.py
+   ```
+
+5. Alternatively, run the end-to-end pipeline via the notebooks in `notebooks/`.
+
+---
 
 ## Reference
 
